@@ -1,0 +1,70 @@
+<div class="modal fade">
+  <div class="modal-dialog custom">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button> -->
+        <h3 class="modal-title">Welcome to Gadgets</h3>
+        Please sign in with your email and password to proceed.
+      </div>
+      
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "form-horizontal login" }) do |f| %>
+          <% unless alert.blank? %><div class="alert alert-danger"><span class="glyphicon glyphicon-remove-circle"></span> <%= alert %></div><% end %>
+
+        <div class="modal-body">
+          <!-- <p class="notice"><%= notice %></p> -->
+          <div class="form-group">
+            <%= f.label :email, class: "col-sm-2 control-label" %>
+            <div class="col-sm-10">
+              <%= f.text_field :email, autofocus: true, class: "form-control"%>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= f.label :password, class: "col-sm-2 control-label" %>
+            <div class="col-sm-10">
+              <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+            </div>
+          </div>
+
+            <% if devise_mapping.rememberable? -%>
+              <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                  <div class="checkbox">
+                    <%= f.label :remember_me do -%>
+                      <%= f.check_box :remember_me %> Remember me
+                    <% end -%>
+                      <div style="float: right">
+                        <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                          <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+                        <% end -%>
+                      </div>
+                  </div>
+                </div>
+              </div>
+            <% end -%>
+
+
+          <div class="modal-footer">
+           <div style="float: left">
+             <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+            New user? <%= link_to "Sign up", new_registration_path(resource_name), class: "btn-sm btn-warning" %><br />
+            <% end -%>
+           </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <%= f.submit "Sign in", class: "btn btn-primary" %>
+              </div>
+            </div>
+          </div>
+          </div>
+      <% end %>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<script type="text/javascript">
+  $('.modal').modal({
+    backdrop: 'static',
+    keyboard: true
+});
+</script>

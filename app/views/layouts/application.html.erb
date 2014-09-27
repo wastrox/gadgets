@@ -2,13 +2,51 @@
 <html>
 <head>
   <title>Gadgets</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
+
 <body>
-
-<%= yield %>
-
+	<div role="navigation" class="navbar navbar-fixed-top navbar-inverse">
+      <div class="container">
+        <div class="navbar-header">
+          <button data-target="navbar-collapse" data-toggle="collapse" class="navbar-toggle" type="button">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/" class="navbar-brand">Gadgets</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <%= content_tag :ul, class: "nav navbar-nav" do -%>
+            <%# content_tag :li, ( link_to "Gadgets", gadgets_url ), class: active("gadgets") %>
+          <% end -%>
+          <% if current_user -%>
+          <p class="navbar-text navbar-right">
+          		<%= i "profile" %>
+	          	<%= current_user.email %>&nbsp;  
+				<%= link_to raw("<span class='glyphicon glyphicon-log-out'></span> Logout"), destroy_user_session_path, method: :delete %>
+		  </p>
+		  <% end %>
+        </div><!-- /.nav-collapse -->
+      </div><!-- /.container -->
+    </div>
+			
+	<div class="container admin-container">
+    <div class="row row-offcanvas row-offcanvas-right">
+    	<div class="col-xs-12 col-sm-9">
+      	<% if flash.any? %>
+      		<% if flash[:notice] %><p id="notice"><%= notice %></p><% end %>
+      		<% if flash[:error] %><p class="text-danger"><%= flash[:error] %></p><% end %>
+      	<% end %>
+      	<%= yield %>
+      </div>	
+      <div class="col-xs-6 col-sm-3 sidebar-module sidebar-module-inset">
+        <%# render "layouts/msg_helper" %>
+      </div>
+    </div><!--/row-->
+	</div>
 </body>
 </html>
