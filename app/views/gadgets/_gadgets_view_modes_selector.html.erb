@@ -1,8 +1,4 @@
 <div id="view_mode">
-  <%= link_to gadgets_path(view_mode: :cover, format: :js), title: "View in Cover Flow mode", class: "btn btn-xs btn-warning", remote: true do %>
-  		<%= i "th-large" %>
-  <% end %>
-  <%= link_to gadgets_path(view_mode: :list, format: :js), title: "View in List mode", class: "btn btn-xs btn-warning", remote: true do %>
-  		<%= i "list" %>
-  <% end %>
+	<%= view_mode_selector(:cover, "Cover Flow", "th-large") -%>
+	<%= view_mode_selector(:list, "List", "th-large") -%>
 </div>
