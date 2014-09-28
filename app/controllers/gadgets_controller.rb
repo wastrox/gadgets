@@ -3,7 +3,7 @@ class GadgetsController < ApplicationController
   	before_action :set_gadget, only: [ :show, :edit, :update, :destroy ]
 
 	def index
-	    @gadgets = Gadget.all
+	    @gadgets = Gadget.where(user: current_user)
 	end
 
 	def new
@@ -11,7 +11,7 @@ class GadgetsController < ApplicationController
 	end
 
 	def create
-	    @gadget = Gadget.new(gadget_params)
+	    @gadget = Gadget.new(gadget_params.merge(user: current_user))
 
 	    respond_to do |format|
 	      if @gadget.save
