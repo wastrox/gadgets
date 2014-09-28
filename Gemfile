@@ -34,14 +34,20 @@ group :development, :test do
   	gem 'pry-rails'
   	gem 'awesome_print'
   	gem "factory_girl_rails", "~> 4.4.1"#, :require => false
+  	gem 'guard-cucumber'
 end
 
 group :test do
 	gem "faker", "~> 1.3.0"
 	gem "capybara", "~> 2.3.0"
 	gem "database_cleaner", "~> 1.3.0"
-	gem "cucumber"
+	gem 'cucumber-rails', :require => false
 	gem 'selenium-webdriver'
+	gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+	gem 'guard-rspec'
+	#gem 'guard-cucumber'
+	gem 'guard-spring'
+	gem 'spring-commands-rspec'
 	gem "codeclimate-test-reporter", require: nil
 end
 
