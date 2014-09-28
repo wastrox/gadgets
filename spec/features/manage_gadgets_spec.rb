@@ -1,6 +1,20 @@
 require 'spec_helper'
+require 'set'
 include Warden::Test::Helpers
 Warden.test_mode!
+
+shared_examples "visually creatable" do |target, title|
+  it "should create #{target}" do
+  	expect {
+		visit gadgets_path
+		click_link "Add Gadget"
+		fill_in "Title", with: title
+		click_button "Save"
+		expect(page).to have_text("Gadget was successfully created")
+		expect(page).to have_text(title)
+	}.to change(Gadget, :count).by(1)
+  end
+end
 
 feature "Gadgets Management" do
 	describe "In order to manage my gadgets collection" do
@@ -29,28 +43,29 @@ feature "Gadgets Management" do
 							Gadget.destroy_all
 							visit gadgets_path
 						end
+						it_should_behave_like "visually creatable", "gadget", "iPhone"
+
 						scenario "I see that my gadgets list is empty" do
 							expect(page).to have_text("You don't have any gadgets yet")
 						end
 						scenario "I can add my first gadget" do
 							expect(page).to have_text("Add Gadget")
 						end
-						scenario "New gadget can be created" do
-							click_link "Add Gadget"
-							fill_in "Title", with: "iPhone"
-							click_button "Save"
-							expect(page).to have_text("Gadget was successfully created")
-							expect(page).to have_text("iPhone")
-						end
+
 					end
 				end
 				describe "I can see my gadgets collection #1079" do
+					# make sure we can add additional gadgets when we already have some
+					it_should_behave_like "visually creatable", "gadget", "iPhone2"
+
 					before(:each) do
-						create(:gadget, title: "iPhone")
-						create(:gadget, title: "iPad")
-						visit gadgets_path
-						expect(page).to have_text("iPhone")
-						expect(page).to have_text("iPad")
+						expect {
+							create(:gadget, title: "iPhone")
+							create(:gadget, title: "iPad")
+							visit gadgets_path
+							expect(page).to have_text("iPhone")
+							expect(page).to have_text("iPad")
+						}.to change(Gadget, :count).by(2)
 					end
 					scenario "in COVER FLOW mode #1080" do
 						click_button "Cover Flow View"
@@ -59,6 +74,7 @@ feature "Gadgets Management" do
 						click_button "List View"
 					end
 				end
+
 				describe "I can add new gadget" do
 					before(:each) do
 						visit create_gadgets_path
