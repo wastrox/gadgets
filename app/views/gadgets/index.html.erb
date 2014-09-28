@@ -1,0 +1,8 @@
+<% if @gadgets.any? %>
+	<%= render partial: "gadgets_list" %>
+<% else %>
+	<h2>You don't have any gadgets yet.</h2>
+<% end %>
+
+<hr>
+<%= link_to 'Add Gadget', new_gadget_path, class: "btn btn-primary" %>
