@@ -28,6 +28,3 @@ test: &test
 production:
   <<: *default
   database: gadgets_production
-
-cucumber:
-  <<: *test
