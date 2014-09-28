@@ -17,5 +17,13 @@ module ApplicationHelper
 			content_tag :span, "", class: "glyphicon glyphicon-#{str} #{_class}", id: _id
 		end
 	end
-
+	def active(url) #navbar
+		'active' if params[:controller] == url
+	end
+	def bs_alert(type, id, text)
+		raw %Q(<div id="#{id}" class="alert alert-#{type.to_s} alert-dismissible">
+				<button type="button" class="close" data-dismiss="alert">
+				<span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+				#{text}</div>)
+	end
 end

@@ -232,6 +232,7 @@ DEPENDENCIES
   jquery-rails
   launchy (~> 2.4.2)
   mysql2
+  nokogiri
   pry-rails
   rails (= 4.1.6)
   rb-fsevent

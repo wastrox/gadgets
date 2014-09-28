@@ -28,6 +28,7 @@ gem 'spring',        group: :development
 
 gem 'mysql2'
 gem 'devise'
+gem 'nokogiri'
 
 group :development, :test do
 	gem 'rspec-rails'

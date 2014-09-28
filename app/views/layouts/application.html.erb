@@ -21,7 +21,7 @@
         </div>
         <div class="collapse navbar-collapse">
           <%= content_tag :ul, class: "nav navbar-nav" do -%>
-            <%# content_tag :li, ( link_to "Gadgets", gadgets_url ), class: active("gadgets") %>
+            <%= content_tag :li, ( link_to "My Gadgets", gadgets_url ), class: active("gadgets") %>
           <% end -%>
           <% if current_user -%>
           <p class="navbar-text navbar-right">
@@ -38,8 +38,8 @@
     <div class="row row-offcanvas row-offcanvas-right">
     	<div class="col-xs-12 col-sm-9">
       	<% if flash.any? %>
-      		<% if flash[:notice] %><p id="notice"><%= notice %></p><% end %>
-      		<% if flash[:error] %><p class="text-danger"><%= flash[:error] %></p><% end %>
+      		<% if flash[:notice] %><%=bs_alert(:warning, "flash-notice", flash[:notice])%><% end %>
+      		<% if flash[:error] %><%=bs_alert(:danger, "flash-error", flash[:error])%><% end %>
       	<% end %>
       	<%= yield %>
       </div>	
