@@ -73,6 +73,13 @@ feature "Gadgets Management" do
 					scenario "in LIST mode #1081" do
 						click_button "List View"
 					end
+					scenario "and only MY OWN gadgets are listed" do
+						expect {
+							create(:gadget, title: "Another user's gadget", user: @another_user)
+						}.to change(Gadget, :count).by(1)
+						visit gadgets_path
+						expect(page).not_to have_text("Another user's gadget")						
+					end
 				end
 
 				describe "I can add new gadget" do

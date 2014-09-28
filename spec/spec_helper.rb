@@ -75,6 +75,7 @@ RSpec.configure do |config|
   Capybara.javascript_driver = :selenium
 
   config.before(:each) do
-    @user = create(:user, email: "tester@test.com", password: "123")
+    @user = create(:user, email: "tester@test.com")
+    @another_user = create(:another_user)
   end
 end
