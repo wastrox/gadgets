@@ -1,5 +1,9 @@
 <% if @gadgets.any? %>
-	<%= render partial: "gadgets_list" %>
+	<%= render partial: "gadgets_view_modes_selector" %>
+
+	<h4>My Gadgets Collection</h4>
+	<%= render partial: "gadgets_collection" %>
+
 <% else %>
 	<h2>You don't have any gadgets yet.</h2>
 <% end %>

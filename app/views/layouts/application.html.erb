@@ -36,11 +36,12 @@
 			
 	<div class="container admin-container">
     <div class="row row-offcanvas row-offcanvas-right">
-    	<div class="col-xs-12 col-sm-9">
+    	<div>
       	<% if flash.any? %>
       		<% if flash[:notice] %><%=bs_alert(:warning, "flash-notice", flash[:notice])%><% end %>
       		<% if flash[:error] %><%=bs_alert(:danger, "flash-error", flash[:error])%><% end %>
       	<% end %>
+      	</div>
       	<%= yield %>
       </div>	
       <div class="col-xs-6 col-sm-3 sidebar-module sidebar-module-inset">
@@ -48,5 +49,6 @@
       </div>
     </div><!--/row-->
 	</div>
+	<div id="overlay"><div id="loading"></div></div>
 </body>
 </html>

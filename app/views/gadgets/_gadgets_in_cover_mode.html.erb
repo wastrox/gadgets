@@ -1,0 +1,15 @@
+<h4 class="view_mode">Cover Flow View</h4>
+<table class="disabled table table-hovers table-condensed table-striped table-bordered">
+  <thead>
+    <tr>
+      <th>Gadget title</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @gadgets.each do |gadget| %>
+      <%= content_tag(:tr, class: "gadget_row", data: { gadget: gadget.id } ) do -%>
+        <td><%=gadget.title%></td>
+      <% end -%>
+    <% end %>
+  </tbody>
+</table>

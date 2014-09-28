@@ -16,7 +16,11 @@
 
 #error_explanation h2 {font-size: 20px; margin-top: 0;}
 
-.admin-container {
-	margin-top: 73px;
-}
+.admin-container {margin-top: 73px;}
 
+#view_mode {float: right; font-size: large}
+
+#overlay {display:none; position:fixed; height:100%; width:100%; top:0; left:0; background: rgba(200,200,200,0.4); border:1px solid #cecece; z-index:4004; opacity: 0.01; }
+#loading {position: absolute; left: 0; top: 0; opacity: 0.9; z-index: 5000; width: 64px; height: 64px; background-image: url(ajax_loading.gif); background-size: 100%}
+
+#gadgets_collection h4.view_mode {text-align: right;}

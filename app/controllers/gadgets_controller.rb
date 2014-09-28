@@ -1,9 +1,14 @@
 class GadgetsController < ApplicationController
 
-  	before_action :set_gadget, only: [ :show, :edit, :update, :destroy ]
+  	before_action :set_gadget, only: [:show, :edit, :update, :destroy]
+  	before_action :set_view_mode, only: [:index]
 
 	def index
 	    @gadgets = Gadget.where(user: current_user)
+	    respond_to do |format|
+	        format.html { }
+			format.js { sleep 0.2 }
+	    end
 	end
 
 	def new
@@ -33,5 +38,11 @@ class GadgetsController < ApplicationController
 
     def gadget_params
       params.require(:gadget).permit(:title)
+    end
+
+    def set_view_mode
+    	@view_mode = params[:view_mode]
+    	@view_mode ||= "list"
+    	@view_mode.to_sym
     end
 end

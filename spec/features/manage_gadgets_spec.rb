@@ -67,11 +67,20 @@ feature "Gadgets Management" do
 							expect(page).to have_text("iPad")
 						}.to change(Gadget, :count).by(2)
 					end
-					scenario "COVER FLOW mode available #1080" do
-						click_button "Cover Flow View"
+					scenario "COVER FLOW mode available #1080", :js => true do
+						click_link "View in Cover Flow mode"
+						expect(page).to have_text("Cover Flow View")
 					end
-					scenario "LIST mode available #1081" do
-						click_button "List View"
+					scenario "LIST mode available #1081", :js => true do
+						click_link "View in List mode"
+						expect(page).to have_text("List View")
+					end
+					scenario "only MY OWN gadgets are listed" do
+						expect { 
+							create(:gadget, title: "Another user's gadget", user: @another_user)
+						}.to change(Gadget, :count).by(1)
+						visit gadgets_path
+						expect(page).not_to have_text("Another user's gadget")						
 					end
 					scenario "only MY OWN gadgets are listed" do
 						expect { 
