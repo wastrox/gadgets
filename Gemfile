@@ -29,6 +29,8 @@ gem 'spring',        group: :development
 gem 'mysql2'
 gem 'devise'
 gem 'nokogiri'
+gem "paperclip", "~> 4.2"
+gem "jquery-fileupload-rails"
 
 group :development, :test do
 	gem 'rspec-rails'

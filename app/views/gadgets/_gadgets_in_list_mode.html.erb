@@ -4,6 +4,7 @@
     <tr>
       <th>Gadget id</th>
       <th>Gadget title</th>
+      <th>Gadget photo</th>
     </tr>
   </thead>
   <tbody>
@@ -11,6 +12,7 @@
       <%= content_tag(:tr, class: "gadget_row", data: { gadget: gadget.id } ) do -%>
         <td><%=gadget.id%></td>
         <td><%=gadget.title%></td>
+        <td><%= image_tag gadget.photos.first.photo.url(:thumb) if gadget.photos.any?%></td>
       <% end -%>
     <% end %>
   </tbody>

@@ -1,4 +1,14 @@
 <h1><%= @gadget.title %></h1> 
-
+  <%= file_field_tag :photo, {"data-url" => "/gadgets/#{@gadget.id}/photos", "data-id" => "#{@gadget.id}",name: "photo[photo]", multiple: "", type: "file"} %>
+<hr>
+<div id="gadgets_collection">
+  <h4>My <%= @gadget.title %> Photos</h4>
+  <% @gadget.photos.each do |image| -%>
+    <%= image_tag image.photo.url(:thumb) %>
+  <% end -%>
+</div>
+<hr>
 <%= link_to 'Edit', edit_gadget_path(@gadget), class: "btn btn-warning" %>
 <%= link_to 'Back', gadgets_path, class: "btn btn-default" %>
+
+<%= javascript_include_tag "gadgets/show" %>

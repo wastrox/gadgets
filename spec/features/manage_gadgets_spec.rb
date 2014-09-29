@@ -16,6 +16,20 @@ shared_examples "visually creatable" do |target, title|
   end
 end
 
+shared_context "multiple files for upload" do
+	let(:files) { Dir.glob(Rails.root.join "spec/fixtures/files/gadgets/iPhone4s/**/*") }
+	let(:files_count) {files.count} # save files count for checking outside expect
+	def gadget_with_photos
+		expect { @gadget = create(:gadget, title: "iPhone4s", user: @user) }.to change(Gadget, :count).by(1)
+		visit gadget_path(@gadget)
+		files.map {|file| attach_file "photo[photo]", file}
+		wait_for_ajax
+		expect(@gadget.title).to eq("iPhone4s")
+		expect(@gadget.photos.count).to eq(files_count+1)
+		return @gadget
+	end
+end
+
 feature "Gadgets Management" do
 	describe "In order to manage my gadgets collection" do
 		describe "As unregistered user" do
@@ -35,7 +49,7 @@ feature "Gadgets Management" do
 			end
 			describe "I want to create and manage gadgets" do
 				before(:each) do
-				    login_as(@user, :run_callbacks => false)
+				    login_as(@user, run_callbacks: false)
 				end
 				describe "If I don't have any gadgets yet" do
 					describe "When I visit gadgets collection page" do
@@ -67,43 +81,35 @@ feature "Gadgets Management" do
 							expect(page).to have_text("iPad")
 						}.to change(Gadget, :count).by(2)
 					end
-					scenario "COVER FLOW mode available #1080", :js => true do
+					scenario "COVER FLOW mode available #1080", js: true do
 						click_link "View in Cover Flow mode"
 						expect(page).to have_text("Cover Flow View")
 					end
-					scenario "LIST mode available #1081", :js => true do
+					scenario "LIST mode available #1081", js: true do
 						click_link "View in List mode"
 						expect(page).to have_text("List View")
 					end
 					scenario "only MY OWN gadgets are listed" do
-						expect { 
-							create(:gadget, title: "Another user's gadget", user: @another_user)
-						}.to change(Gadget, :count).by(1)
-						visit gadgets_path
-						expect(page).not_to have_text("Another user's gadget")						
-					end
-					scenario "only MY OWN gadgets are listed" do
-						expect { 
-							create(:gadget, title: "Another user's gadget", user: @another_user)
-						}.to change(Gadget, :count).by(1)
+						expect { create(:gadget, title: "Another user's gadget", user: @another_user) }.to change(Gadget, :count).by(1)
 						visit gadgets_path
 						expect(page).not_to have_text("Another user's gadget")						
 					end
 				end
 
-				describe "I can add new gadget" do
-					before(:each) do
-						visit create_gadgets_path
+				include_context "multiple files for upload" # this shared context is used to DRY two following specs which both rely on shared method gadget_with_photos
+
+					describe "I can add new gadget" do
+						scenario "I can upload many gadget images #1082", :js => true do
+							gadget_with_photos
+						end
 					end
-					scenario "I can upload many gadget images #1082" do
-						visit upload_gadget_images_path
+
+					describe "I can view existing gadget images" do
+						scenario "In different sizes #1083", js: true do
+							@gadget = gadget_with_photos
+							[:full, :medium, :thumb].map { |size| expect(@gadget.photos.first.photo.exists?(size)).to be true }
+						end
 					end
-				end
-				describe "I can view existing gadget images" do
-					scenario "In different sizes #1083" do
-						visit show_gadgets_path
-					end
-				end
 			end
 		end
 

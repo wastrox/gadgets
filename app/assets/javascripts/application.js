@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require bootstrap.js
 //= require bootstrap-confirmation.js
-//= require_tree .
+//= require jquery-fileupload/basic
+//require_tree .

@@ -3,12 +3,18 @@
   <thead>
     <tr>
       <th>Gadget title</th>
+      <th>Gadget images</th>
     </tr>
   </thead>
   <tbody>
     <% @gadgets.each do |gadget| %>
       <%= content_tag(:tr, class: "gadget_row", data: { gadget: gadget.id } ) do -%>
         <td><%=gadget.title%></td>
+        <td>
+          <% gadget.photos.each do |image| -%>
+            <%= image_tag image.photo.url(:thumb) %>
+          <% end -%>
+        </td>
       <% end -%>
     <% end %>
   </tbody>

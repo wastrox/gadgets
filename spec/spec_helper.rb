@@ -24,6 +24,7 @@ RSpec.configure do |config|
   config.before { allow($stdout).to receive(:puts) } # allow puts inside rspec test - just for better understanding what has happened wrong
   config.include FactoryGirl::Syntax::Methods
   config.mock_with :rspec
+  config.include WaitForAjax, type: :feature
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"

@@ -27,6 +27,18 @@ class GadgetsController < ApplicationController
 	    end
 	end
 
+	def update
+		respond_to do |format|
+		  if @gadget.update(gadget_params)
+		    format.html { redirect_to @gadget, notice: 'Gadget was successfully updated.' }
+		    format.json { head :no_content }
+		  else
+		    format.html { render action: 'edit' }
+		    format.json { render json: @gadget.errors, status: :unprocessable_entity }
+		  end
+		end
+	end
+
 	def show
 	end
 
@@ -37,12 +49,12 @@ class GadgetsController < ApplicationController
     end
 
     def gadget_params
-      params.require(:gadget).permit(:title)
+      params.require(:gadget).permit(:title, :photo)
     end
 
     def set_view_mode
     	@view_mode = params[:view_mode]
-    	@view_mode ||= "list"
+    	@view_mode ||= "cover"
     	@view_mode.to_sym
     end
 end
