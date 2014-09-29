@@ -1,4 +1,5 @@
-<h1><%= @gadget.title %></h1> 
+<h1><%= @gadget.title %></h1>
+<span class="help-block">Upload photos for this gadget? Click 'Browse' to select your images or simply drag them over button!</span>
   <%= file_field_tag :photo, {"data-url" => "/gadgets/#{@gadget.id}/photos", "data-id" => "#{@gadget.id}",name: "photo[photo]", multiple: "", type: "file"} %>
 <hr>
 <div id="gadgets_collection">

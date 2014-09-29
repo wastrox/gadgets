@@ -54,7 +54,7 @@ class GadgetsController < ApplicationController
 
     def set_view_mode
     	@view_mode = params[:view_mode]
-    	@view_mode ||= "cover"
+    	@view_mode ||= "list"
     	@view_mode.to_sym
     end
 end

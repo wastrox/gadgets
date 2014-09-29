@@ -4,4 +4,7 @@ module GadgetsHelper
 			i image
 		end)
 	end
+	def gadgets_count(gadget)
+		gadget.photos.count > 0 ? hint("(#{gadget.photos.count} photos)") : ""
+	end
 end

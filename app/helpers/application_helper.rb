@@ -26,4 +26,12 @@ module ApplicationHelper
 				<span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 				#{text}</div>)
 	end
+	def hint(text)
+		raw %Q(<span class="hint">#{text}</span>)
+	end
+	def gadget_popover_photo(gadget, image) # TODO: refactor this complex method 
+		medium_img = image_tag(image.photo.url(:medium))
+        link_to image_tag(image.photo.url(:thumb)), image.photo.url(:original), class: "btn btn-default pop", 
+        data: {toggle: "popover", trigger: "focus", content: raw(medium_img.gsub(/["]/,"'")) }, title: "#{gadget.title} photo ##{image.id}"
+	end
 end

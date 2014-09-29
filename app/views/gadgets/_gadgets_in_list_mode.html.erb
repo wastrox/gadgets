@@ -2,18 +2,42 @@
 <table class="disabled table table-hovers table-condensed table-striped table-bordered">
   <thead>
     <tr>
-      <th>Gadget id</th>
-      <th>Gadget title</th>
-      <th>Gadget photo</th>
+      <th>Gadget</th>
+      <th>First 5 photos <%=hint("(more photos available in Cover Flow mode)")%></th>
+      <th>Manage</th>
     </tr>
   </thead>
   <tbody>
     <% @gadgets.each do |gadget| %>
       <%= content_tag(:tr, class: "gadget_row", data: { gadget: gadget.id } ) do -%>
-        <td><%=gadget.id%></td>
-        <td><%=gadget.title%></td>
-        <td><%= image_tag gadget.photos.first.photo.url(:thumb) if gadget.photos.any?%></td>
+        <td><strong><%=gadget.title%></strong> <%=gadgets_count(gadget)%></td>
+        <td width="660">
+            <%= "No images for this gadget uploaded yet" unless gadget.photos.any? %>
+            <% gadget.photos.first(5).each do |image| -%>
+              <%= gadget_popover_photo(gadget, image) -%>
+            <% end -%>
+        </td>
+        <td width="190">
+          <%= link_to 'Add Images', gadget_path(gadget), class: "btn btn-warning" %>
+          <%= link_to 'Delete', gadgets_path, class: "btn btn-danger" %>
+        </td>
       <% end -%>
     <% end %>
   </tbody>
 </table>
+
+<script>
+$('.popup-ajax').popover({
+    "html": true,
+    "content": "asd"
+});
+
+$('.pop').popover({
+  trigger: 'hover',
+  container: 'body',
+  html: true,
+});
+
+
+
+</script>

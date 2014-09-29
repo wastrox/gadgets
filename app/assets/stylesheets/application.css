@@ -24,3 +24,4 @@
 #loading {position: absolute; left: 0; top: 0; opacity: 0.9; z-index: 5000; width: 64px; height: 64px; background-image: url(ajax_loading.gif); background-size: 100%}
 
 #gadgets_collection h5.view_mode {text-align: right;}
+.hint {color: #737373; font-weight: normal;}
