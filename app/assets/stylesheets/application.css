@@ -13,6 +13,8 @@
  *= require_tree .
  *= require editable/bootstrap-editable
  *= require contentflow
+ *= require select2
+ *= require select2-bootstrap
  *= require_self
  */
 

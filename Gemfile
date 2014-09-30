@@ -33,6 +33,7 @@ gem "paperclip", "~> 4.2"
 gem "jquery-fileupload-rails"
 gem 'contentflow'
 gem 'x-editable-rails'
+gem "select2-rails"
 
 group :development, :test do
 	gem 'rspec-rails'

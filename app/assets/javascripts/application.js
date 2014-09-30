@@ -20,4 +20,5 @@
 //= require editable/bootstrap-editable
 //= require editable/rails
 //= require contentflow
+//= require select2
 //require_tree .

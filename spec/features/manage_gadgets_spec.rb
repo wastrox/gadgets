@@ -110,6 +110,29 @@ feature "Gadgets Management" do
 							[:full, :medium, :thumb].map { |size| expect(@gadget.photos.first.photo.exists?(size)).to be true }
 						end
 					end
+
+				describe "In Cover Flow mode" do
+					describe "I can search my gadgets by name #1096" do
+						before(:each) do
+							create(:gadget, title: "iPhone 4s", user: @user)
+							create(:gadget, title: "iPad mini", user: @user)
+							create(:gadget, title: "iPad Air", user: @user)
+							visit gadgets_path
+						end
+						scenario "I click search input and see all my gadgets in list", js: true do
+							pending "I should see the list of all gadgets in select field #{__FILE__}"
+						end
+						scenario "I enter name of gadget which is not in collection and see no mathes", js: true do
+							pending "I should see 'No matches' in select field #{__FILE__}"
+						end
+						scenario "I enter part of existing gadget 'mini' and see 'iPad mini'", js: true do
+							pending "I should see 'iPad mini' in select field #{__FILE__}"
+						end
+						scenario "With 'iPad mini' selected, I click 'go' button and only iPad mini is displayed", js: true do
+							pending "I should see 'iPad mini' after page reload, and iPad mini selected in selet2 #{__FILE__}"
+						end
+					end
+				end
 			end
 		end
 
