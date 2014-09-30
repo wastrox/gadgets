@@ -17,6 +17,6 @@ Registered user can:
 
 * Search gadgets
 
-* Upload several gadget images
+* Upload several gadget images simultaneously
 
 * View uploaded gadget images in different size
