@@ -1,6 +1,6 @@
-<h1><%= @gadget.title %></h1>
-<span class="help-block">Upload photos for this gadget? Click 'Browse' to select your images or simply drag them over button!</span>
-  <%= file_field_tag :photo, {"data-url" => "/gadgets/#{@gadget.id}/photos", "data-id" => "#{@gadget.id}",name: "photo[photo]", multiple: "", type: "file"} %>
+<h1><%= editable @gadget, :title %></h1>
+<span class="help-block">Let's upload photos of this gadget. Click 'Browse' to select your images or simply drag them drop zone!</span>
+  <%= file_field_tag :photo, {"data-url" => "/gadgets/#{@gadget.id}/photos", "data-id" => "#{@gadget.id}",name: "photo[photo]", multiple: "", type: "file", class: "btn btn-info btn-lg"} %>
 <hr>
 <div id="gadgets_collection">
   <h4>My <%= @gadget.title %> Photos</h4>
@@ -9,7 +9,6 @@
   <% end -%>
 </div>
 <hr>
-<%= link_to 'Edit', edit_gadget_path(@gadget), class: "btn btn-warning" %>
-<%= link_to 'Back', gadgets_path, class: "btn btn-default" %>
+<%= b "Back", gadgets_path, "arrow-left" %>
 
 <%= javascript_include_tag "gadgets/show" %>

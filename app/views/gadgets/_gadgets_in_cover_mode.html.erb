@@ -1,21 +1,24 @@
 <h5 class="view_mode">Cover Flow View</h5>
 <table class="disabled table table-hovers table-condensed table-striped table-bordered">
-  <thead>
-    <tr>
-      <th>Gadget title</th>
-      <th>Gadget images</th>
-    </tr>
-  </thead>
   <tbody>
-    <% @gadgets.each do |gadget| %>
+ 
+      <% @gadgets.each do |gadget| %>
+      <tr class="active collection_title"><td><h4><%= editable gadget, :title %> <%= b 'Add Photos', gadget_path(gadget), :file, :default, :xs %></h4></td></tr>
       <%= content_tag(:tr, class: "gadget_row", data: { gadget: gadget.id } ) do -%>
-        <td><%=gadget.title%></td>
         <td>
-          <% gadget.photos.each do |image| -%>
-            <%= image_tag image.photo.url(:thumb) %>
-          <% end -%>
+             <div class="ContentFlow">
+                <div class="loadIndicator"><div class="indicator"></div></div>
+                <div class="flow">
+                  <% gadget.photos.each_with_index do |image, i| -%>
+                      <%= image_tag image.photo.url(:full), class: "item", title: gadget_title(gadget,i+1) %>
+                  <% end -%>
+                </div>
+                <div class="globalCaption"></div>
+                <div class="scrollbar"><div class="slider"><div class="position"></div></div></div>
+            </div>
         </td>
       <% end -%>
     <% end %>
+
   </tbody>
 </table>

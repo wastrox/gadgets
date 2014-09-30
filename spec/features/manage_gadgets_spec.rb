@@ -8,7 +8,7 @@ shared_examples "visually creatable" do |target, title|
   	expect {
 		visit gadgets_path
 		click_link "Add Gadget"
-		fill_in "Title", with: title
+		fill_in "gadget_title", with: title
 		click_button "Save"
 		expect(page).to have_text("Gadget was successfully created")
 		expect(page).to have_text(title)

@@ -20,3 +20,5 @@ $(document).ready(function() {
 $(document).ajaxStop(function () {
   location.reload(); // reload page when all Ajax requests are over to update gadget images list
 });
+
+$('.editable').editable({mode: "inline"})

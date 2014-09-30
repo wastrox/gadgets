@@ -7,7 +7,7 @@ class GadgetsController < ApplicationController
 	    @gadgets = Gadget.where(user: current_user)
 	    respond_to do |format|
 	        format.html { }
-			format.js { sleep 0.2 }
+			format.js { }
 	    end
 	end
 
@@ -24,6 +24,14 @@ class GadgetsController < ApplicationController
 	      else
 	        format.html { render action: 'new' }
 	      end
+	    end
+	end
+
+	def destroy
+	    @gadget.destroy
+	    respond_to do |format|
+	      format.html { redirect_to gadgets_url }
+	      format.json { head :no_content }
 	    end
 	end
 
@@ -54,7 +62,11 @@ class GadgetsController < ApplicationController
 
     def set_view_mode
     	@view_mode = params[:view_mode]
-    	@view_mode ||= "list"
+    	@view_mode ||= "cover"
     	@view_mode.to_sym
     end
+
+	def xeditable? object = nil
+	  true
+	end
 end

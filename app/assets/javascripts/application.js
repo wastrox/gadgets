@@ -12,8 +12,12 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+// require turbolinks # turbolinks brakes contentflow
 //= require bootstrap.js
 //= require bootstrap-confirmation.js
 //= require jquery-fileupload/basic
+//= require layout.js
+//= require editable/bootstrap-editable
+//= require editable/rails
+//= require contentflow
 //require_tree .

@@ -11,6 +11,8 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require editable/bootstrap-editable
+ *= require contentflow
  *= require_self
  */
 
@@ -22,6 +24,7 @@
 
 #overlay {display:none; position:fixed; height:100%; width:100%; top:0; left:0; background: rgba(200,200,200,0.4); border:1px solid #cecece; z-index:4004; opacity: 0.01; }
 #loading {position: absolute; left: 0; top: 0; opacity: 0.9; z-index: 5000; width: 64px; height: 64px; background-image: url(ajax_loading.gif); background-size: 100%}
-
 #gadgets_collection h5.view_mode {text-align: right;}
-.hint {color: #737373; font-weight: normal;}
+.hint {color: #999; font-weight: normal;}
+.ContentFlow {background-color: black}
+tr.collection_title td {text-align: center;}

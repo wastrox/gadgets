@@ -31,6 +31,8 @@ gem 'devise'
 gem 'nokogiri'
 gem "paperclip", "~> 4.2"
 gem "jquery-fileupload-rails"
+gem 'contentflow'
+gem 'x-editable-rails'
 
 group :development, :test do
 	gem 'rspec-rails'

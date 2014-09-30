@@ -1,5 +1,5 @@
 module ApplicationHelper
-	def i str, _class="", _id="", _title=""
+	def i(str, _class="", _id="", _title="")
 		case str
 		when "trash", "delete", "destroy"
 			content_tag :span, "", class: "glyphicon glyphicon-trash #{_class}", id: _id
@@ -29,9 +29,9 @@ module ApplicationHelper
 	def hint(text)
 		raw %Q(<span class="hint">#{text}</span>)
 	end
-	def gadget_popover_photo(gadget, image) # TODO: refactor this complex method 
-		medium_img = image_tag(image.photo.url(:medium))
-        link_to image_tag(image.photo.url(:thumb)), image.photo.url(:original), class: "btn btn-default pop", 
-        data: {toggle: "popover", trigger: "focus", content: raw(medium_img.gsub(/["]/,"'")) }, title: "#{gadget.title} photo ##{image.id}"
+	def b(text, url, _img="", _class="default", _size=nil, _delete={})
+		size = "btn-#{_size}" if _size
+		_delete = {data: {confirm: "Are you sure?", method: :delete}} if _delete.equal?(:delete)
+		link_to url, {class: "btn btn-#{_class} #{size}"}.merge(_delete) do i(_img)+" #{text}" end
 	end
 end

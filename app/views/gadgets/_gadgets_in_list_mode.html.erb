@@ -1,43 +1,30 @@
 <h5 class="view_mode">List View</h5>
 <table class="disabled table table-hovers table-condensed table-striped table-bordered">
   <thead>
-    <tr>
-      <th>Gadget</th>
-      <th>First 5 photos <%=hint("(more photos available in Cover Flow mode)")%></th>
+    <tr class="active">
+      <th>Gadget <%=hint("(click to rename)")%></th>
+      <th>Up to 5 first photos <%=hint("(more photos available in <a href='#{gadgets_path}' class='warning'>Cover Flow</a> mode)")%></th>
       <th>Manage</th>
     </tr>
   </thead>
   <tbody>
     <% @gadgets.each do |gadget| %>
       <%= content_tag(:tr, class: "gadget_row", data: { gadget: gadget.id } ) do -%>
-        <td><strong><%=gadget.title%></strong> <%=gadgets_count(gadget)%></td>
+        <td><strong><%= editable gadget, :title %></strong> 
+            <hr><%=gadgets_count(gadget)%>
+        </td>
         <td width="660">
             <%= "No images for this gadget uploaded yet" unless gadget.photos.any? %>
-            <% gadget.photos.first(5).each do |image| -%>
-              <%= gadget_popover_photo(gadget, image) -%>
+            <% gadget.photos.first(5).each_with_index do |image, i| -%>
+              <%= gadget_popover_photo(gadget, image, i) -%>
             <% end -%>
         </td>
         <td width="190">
-          <%= link_to 'Add Images', gadget_path(gadget), class: "btn btn-warning" %>
-          <%= link_to 'Delete', gadgets_path, class: "btn btn-danger" %>
+          <%= b 'Add Photos', gadget, :file, :warning, :xs %>
+          <%= b 'Delete', gadget, :trash, :danger, :xs, :delete %>
         </td>
       <% end -%>
     <% end %>
   </tbody>
 </table>
-
-<script>
-$('.popup-ajax').popover({
-    "html": true,
-    "content": "asd"
-});
-
-$('.pop').popover({
-  trigger: 'hover',
-  container: 'body',
-  html: true,
-});
-
-
-
-</script>
+<%= javascript_include_tag "gadgets/list_mode" %>
