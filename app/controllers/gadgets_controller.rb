@@ -38,10 +38,8 @@ class GadgetsController < ApplicationController
 	def update
 		respond_to do |format|
 		  if @gadget.update(gadget_params)
-		    format.html { redirect_to @gadget, notice: 'Gadget was successfully updated.' }
 		    format.json { head :no_content }
 		  else
-		    format.html { render action: 'edit' }
 		    format.json { render json: @gadget.errors, status: :unprocessable_entity }
 		  end
 		end

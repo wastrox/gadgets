@@ -1,6 +1,6 @@
 == README
 
-Gadgets application
+Gadgets application {<img src="https://codeclimate.com/repos/54269f5ce30ba06fa2009f50/badges/a67a8190f26ef9ce7bbb/gpa.svg" />}[https://codeclimate.com/repos/54269f5ce30ba06fa2009f50/feed] {<img src="https://codeclimate.com/repos/54269f5ce30ba06fa2009f50/badges/a67a8190f26ef9ce7bbb/coverage.svg" />}[https://codeclimate.com/repos/54269f5ce30ba06fa2009f50/feed]
 
 Features:
 
