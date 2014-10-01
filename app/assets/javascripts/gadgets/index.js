@@ -8,4 +8,5 @@ $(document).ready(function() {
 	$('#search_button').click(function(){
 		$('form#search').submit();
 	});
+	$('.editable').editable({mode: "inline"})
 });
