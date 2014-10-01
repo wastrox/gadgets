@@ -18,9 +18,6 @@
 .DS_Store 
 # Gemfile.lock - track Gemfile.lock for semaphore continious integration platform
 
-# removed from repository for security (saved as encrypted file on semaphore)
-/config/initializers/secret_token.rb
-
 /public/system/photos/**/*
 
 
