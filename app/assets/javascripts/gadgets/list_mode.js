@@ -1,10 +1,6 @@
+$('.editable').editable({mode: "inline"})
 $('.pop').popover({
   trigger: 'hover',
   container: 'body',
-  html: true,
+  html: true
 });
-
-
-$(document).ready(function(){
-  $('.editable').editable({mode: "inline"})
-})

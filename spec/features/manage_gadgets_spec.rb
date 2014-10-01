@@ -30,6 +30,7 @@ shared_context "multiple files for upload" do
 	end
 end
 
+
 feature "Gadgets Management" do
 	describe "In order to manage my gadgets collection" do
 		describe "As unregistered user" do
@@ -112,24 +113,47 @@ feature "Gadgets Management" do
 					end
 
 				describe "In Cover Flow mode" do
-					describe "I can search my gadgets by name #1096" do
+					describe "I can search my gadgets by name #1096", js: true do 
 						before(:each) do
-							create(:gadget, title: "iPhone 4s", user: @user)
-							create(:gadget, title: "iPad mini", user: @user)
-							create(:gadget, title: "iPad Air", user: @user)
+							@gadets = ["iPhone 4s", "iPad mini", "iPad Air"]
+							@gadets.map { |gadget| create(:gadget, title: gadget, user: @user)}
 							visit gadgets_path
 						end
-						scenario "I click search input and see all my gadgets in list", js: true do
-							pending "I should see the list of all gadgets in select field #{__FILE__}"
+						scenario "I click search input and see all my gadgets in list" do
+							page.all('select#gadget_gadget_id option').map(&:text).should == ["", "iPhone 4s", "iPad mini", "iPad Air"]
 						end
 						scenario "I enter name of gadget which is not in collection and see no mathes", js: true do
-							pending "I should see 'No matches' in select field #{__FILE__}"
+							execute_script(' $("#gadget_gadget_id").select2("open")')
+							expect(find('.select2-results')).to have_text @gadets.join(" ")
 						end
-						scenario "I enter part of existing gadget 'mini' and see 'iPad mini'", js: true do
-							pending "I should see 'iPad mini' in select field #{__FILE__}"
+						scenario "I enter part of existing gadget 'mini' and see 'iPad mini' only", js: true do
+							execute_script(' $("#gadget_gadget_id").select2("open")')
+							find("input.select2-input").set 'mini'
+							expect(find('.select2-results')).to have_text "iPad mini"
 						end
 						scenario "With 'iPad mini' selected, I click 'go' button and only iPad mini is displayed", js: true do
-							pending "I should see 'iPad mini' after page reload, and iPad mini selected in selet2 #{__FILE__}"
+							execute_script(' $("#gadget_gadget_id").select2("open")')
+							find("input.select2-input").set 'mini'
+							find("input.select2-input").native.send_keys(:return)
+							expect(find('tr.collection_title')).to have_text "iPad mini"
+							expect(page.all('tr.collection_title').map(&:text)).not_to have_text "iPhone 4s"
+						end
+						describe "I search for iPad mini by term 'mini'" do
+							before(:each) do
+								execute_script(' $("#gadget_gadget_id").select2("open")')
+								find("input.select2-input").set 'mini'
+								find("input.select2-input").native.send_keys(:return)
+							end
+
+							scenario "With 'iPad mini' selected, only iPad mini is displayed", js: true do
+								expect(find('tr.collection_title')).to have_text "iPad mini"
+								expect(page.all('tr.collection_title').map(&:text)).not_to have_text "iPhone 4s"
+							end
+							scenario "With 'iPad mini' selected, I click 'x' button to clear search, and ALL gadgets are displayed", js: true do
+								expect(page.all('tr.collection_title').map(&:text)).not_to have_text "iPhone 4s"
+								find(".clear_search").click
+								expect(page.all('tr.collection_title').map(&:text).join()).to have_text @gadets.join(" Add Photos")
+							end
 						end
 					end
 				end

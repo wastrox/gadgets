@@ -29,4 +29,4 @@
 #gadgets_collection h5.view_mode {text-align: right;}
 .hint {color: #999; font-weight: normal;}
 .ContentFlow {background-color: black}
-tr.collection_title td {text-align: center;}
+tr.collection_title td, tr.gadget_row td {text-align: center;}

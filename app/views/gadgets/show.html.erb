@@ -4,9 +4,9 @@
 <hr>
 <div id="gadgets_collection">
   <h4>My <%= @gadget.title %> Photos</h4>
-  <% @gadget.photos.each do |image| -%>
-    <%= image_tag image.photo.url(:thumb) %>
-  <% end -%>
+
+  <%= render partial: "gadget_photos_with_popover", locals: {gadget: @gadget, photos: @gadget.photos }%>
+
 </div>
 <hr>
 <%= b "Back", gadgets_path, "arrow-left" %>

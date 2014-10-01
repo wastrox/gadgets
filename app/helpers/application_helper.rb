@@ -34,4 +34,8 @@ module ApplicationHelper
 		_delete = {data: {confirm: "Are you sure?", method: :delete}} if _delete.equal?(:delete)
 		link_to url, {class: "btn btn-#{_class} #{size}"}.merge(_delete) do i(_img)+" #{text}" end
 	end
+	def search_b(text, url, id, _img="", _class="default", _size=nil)
+		size = "btn-#{_size}" if _size
+		link_to url, {class: "btn btn-#{_class} #{size}", id: id} do i(_img)+" #{text}" end
+	end
 end

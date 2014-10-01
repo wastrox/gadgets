@@ -10,14 +10,10 @@
   <tbody>
     <% @gadgets.each do |gadget| %>
       <%= content_tag(:tr, class: "gadget_row", data: { gadget: gadget.id } ) do -%>
-        <td><strong><%= editable gadget, :title %></strong> 
-            <hr><%=gadgets_count(gadget)%>
-        </td>
+        <td><strong><%= editable gadget, :title %> <%=gadgets_count(gadget)%></td>
         <td width="660">
-            <%= "No images for this gadget uploaded yet" unless gadget.photos.any? %>
-            <% gadget.photos.first(5).each_with_index do |image, i| -%>
-              <%= gadget_popover_photo(gadget, image, i) -%>
-            <% end -%>
+            <%= "No photos for this gadget uploaded yet" unless gadget.photos.any? %>
+            <%= render partial: "gadget_photos_with_popover", locals: {gadget: gadget, photos: gadget.photos.first(5) }%>
         </td>
         <td width="190">
           <%= b 'Add Photos', gadget, :file, :warning, :xs %>

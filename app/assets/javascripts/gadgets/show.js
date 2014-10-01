@@ -22,3 +22,8 @@ $(document).ajaxStop(function () {
 });
 
 $('.editable').editable({mode: "inline"})
+$('.pop').popover({
+  trigger: 'hover',
+  container: 'body',
+  html: true
+});

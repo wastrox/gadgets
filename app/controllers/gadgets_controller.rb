@@ -1,10 +1,15 @@
 class GadgetsController < ApplicationController
 
   	before_action :set_gadget, only: [:show, :edit, :update, :destroy]
-  	before_action :set_view_mode, only: [:index]
+  	before_action :set_view_mode, :search_gadget, only: [:index]
 
 	def index
-	    @gadgets = Gadget.where(user: current_user)
+	    @user_gadgets = Gadget.where(user: current_user)
+	    gadgets_conditions = {user: current_user}
+	    gadgets_conditions.merge!(id: @search_gadget) if @search_gadget
+
+
+	    @gadgets = Gadget.where(gadgets_conditions)
 	    respond_to do |format|
 	        format.html { }
 			format.js { }
@@ -54,8 +59,12 @@ class GadgetsController < ApplicationController
       @gadget = Gadget.find(params[:id])
     end
 
+    def search_gadget
+      @search_gadget = params[:gadget][:gadget_id] if params[:gadget]
+    end
+
     def gadget_params
-      params.require(:gadget).permit(:title, :photo)
+      params.require(:gadget).permit(:title, :photo, :id)
     end
 
     def set_view_mode

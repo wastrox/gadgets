@@ -16,7 +16,7 @@ module GadgetsHelper
 	end
 
 	def gadgets_count(gadget)
-		gadget.photos.count > 0 ? hint("(#{gadget.photos.count} photos)") : ""
+		hint("<span class='badge'>#{gadget.photos.count}</span> photos") if gadget.photos.any?
 	end
 
 	def gadget_title(gadget, index)
