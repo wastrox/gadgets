@@ -1,7 +1,7 @@
-show_loading = ->
+window.show_loading = ->
   $("#loading").center_me()
   $("#overlay").css(opacity: "0.8").fadeIn()
-hide_loading = ->
+window.hide_loading = ->
   $("#overlay").fadeOut()
 
 $.fn.extend center_me: ->

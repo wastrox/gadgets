@@ -12,8 +12,8 @@ $(document).ready ->
   $(".editable").editable mode: "inline"
 
 
-$(document).ajaxStart(->
-  show_loading()
-).ajaxStop ->
-  hide_loading()
+  $(document).ajaxStart(->
+    show_loading()
+  ).ajaxStop ->
+    hide_loading()
 
