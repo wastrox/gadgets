@@ -21,4 +21,5 @@
 //= require editable/rails
 //= require contentflow
 //= require select2
+//= require jquery.knob.min
 //require_tree .

@@ -17,4 +17,4 @@ function hide_loading() {
   $("#overlay").fadeOut()
 }
 
-$( document ).ajaxStart(function() { show_loading() }).ajaxStop(function () { hide_loading() });
+window.setTimeout(function() { $(".alert-dismissible").fadeOut(1200) }, 2000);

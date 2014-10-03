@@ -19,6 +19,8 @@ gem "jquery-fileupload-rails"
 gem 'contentflow'
 gem 'x-editable-rails'
 gem "select2-rails"
+gem 'haml'
+gem 'html2haml'
 
 group :development, :test do
 	gem 'rspec-rails'

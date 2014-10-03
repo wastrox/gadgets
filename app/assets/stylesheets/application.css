@@ -30,3 +30,59 @@
 .hint {color: #999; font-weight: normal;}
 .ContentFlow {background-color: black}
 tr.collection_title td, tr.gadget_row td {text-align: center;}
+
+#upload {display: table; width:100%; 
+	background:#2e3134;
+	border-radius: 6px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+	-webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+	     -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+	        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;}
+#dropzone {height:200px; width:100%; text-align: center; display: table-cell; vertical-align: middle; color: #7f858a;}
+#dropzone .title {font-size: 16px; text-transform: uppercase; font-weight: bold; line-height: 3em;}
+#dropzone .browse {text-transform: uppercase; font-weight: bold; padding-left: 2em; padding-right: 2em}
+#dropzone .upload-list {margin-top: 20px; margin-bottom: 20px; }
+#dropzone .upload-list li {list-style-type: none; font-size: 16px;
+	text-align: left; padding-left: 2em; height: 80px;  vertical-align: middle;
+background:#323538; margin-left: 40px; margin-right: 40px; margin-top: 2px; margin-bottom: 2px;
+border: 1px solid #383838;
+}
+#dropzone .upload-list li table {width: 100%; height: 80px;}
+
+#dropzone .upload-list li p {text-align: left; display: inline; text-transform: uppercase; font-weight: bold; color: #eee; padding-left: 1em;}
+#dropzone .upload-list li i {display: inline;color: #7f7f7f; font-weight: normal; font-style: normal; display: block; padding-left: 1em;}
+.effect8
+{
+  	position:relative;       
+    -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+       -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+            box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 20px rgba(0, 0, 0, 0.1) inset;
+}
+.effect8:before, .effect8:after
+{
+	content:"";
+    position:absolute; 
+    z-index:-1;
+    -webkit-box-shadow:0 0 10px rgba(0,0,0,0.8);
+    -moz-box-shadow:0 0 10px rgba(0,0,0,0.8);
+    box-shadow:0 0 10px rgba(0,0,0,0.8);
+    top:5px;
+    bottom:5px;
+    left:0;
+    right:0;
+    -moz-border-radius:50px / 5px;
+    border-radius:50px / 5px;
+} 
+.effect8:after
+{
+	right:10px; 
+    left:auto;
+    -webkit-transform:skew(8deg) rotate(3deg); 
+       -moz-transform:skew(8deg) rotate(3deg);     
+        -ms-transform:skew(8deg) rotate(3deg);     
+         -o-transform:skew(8deg) rotate(3deg); 
+            transform:skew(8deg) rotate(3deg);
+}
+#photo {display: none;}
+.icon-success {color: lime;}

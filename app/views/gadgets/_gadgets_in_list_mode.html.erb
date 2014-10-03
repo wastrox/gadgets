@@ -13,7 +13,7 @@
         <td><strong><%= editable gadget, :title %> <%=gadgets_count(gadget)%></td>
         <td width="660">
             <%= "No photos for this gadget uploaded yet" unless gadget.photos.any? %>
-            <%= render partial: "gadget_photos_with_popover", locals: {gadget: gadget, photos: gadget.photos.first(5) }%>
+            <%= render partial: "gadget_photo_with_popover", collection: gadget.photos.first(5), as: :photo %>
         </td>
         <td width="190">
           <%= b 'Add Photos', gadget, :file, :warning, :xs %>

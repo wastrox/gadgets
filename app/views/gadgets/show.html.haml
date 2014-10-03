@@ -1,0 +1,22 @@
+%h1= editable @gadget, :title
+%span.help-block Let's upload photos of this gadget. Click 'Browse' to select your images or simply drag them drop zone!
+
+-# upload area
+#upload
+  -# dropzone
+  #dropzone
+    .title Drop files to upload
+    .browse.btn.btn-primary Browse
+    = file_field_tag :photo, {"data-url" => "/gadgets/#{@gadget.id}/photos", name: "photo[photo]", multiple: "", type: "file"}
+    .upload-list
+%hr/
+#gadgets_collection
+  %h4
+    My #{@gadget.title} Photos
+    = render partial: "gadget_photo_with_popover", collection: @gadget.photos, as: :photo
+ 
+%hr/
+= b "Back", gadgets_path, "arrow-left"
+
+= javascript_include_tag "gadgets/show"
+

@@ -7,7 +7,7 @@ class PhotosController < ApplicationController
 	  respond_to do |format|
 	    if @photo.save
 	      format.json {
-	        data = {id: @photo.id, thumb: view_context.image_tag(@photo.photo.url(:thumb))}
+	        data = {id: @photo.id, thumb: view_context.image_tag(@photo.photo.url(:thumb)), gadget_id: @imageable.id, thumb_path: @photo.photo.url(:thumb), medium: @photo.photo.url(:medium), full: @photo.photo.url(:full), title: "#{@imageable.title} photo #{@photo.photo_file_name}"}
 	        render json: data, status: :created
 	      }
 	    else format.json { render json: @photo.errors, status: :unprocessable_entity } end
