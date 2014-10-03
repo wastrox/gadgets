@@ -1,0 +1,38 @@
+.modal.fade
+  .modal-dialog.custom
+    .modal-content
+      .modal-header
+        / <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&amp;times;</button>
+        %h3.modal-title Sign up
+      = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form-horizontal login" }) do |f|
+        - unless devise_error_messages!.blank?
+          .alert.alert-danger= devise_error_messages!
+        .modal-body
+          / <p class="notice"><haml:loud> notice </haml:loud></p>
+          .form-group
+            = f.label :email, class: "col-sm-4 control-label"
+            .col-sm-6
+              = f.text_field :email, autofocus: true, class: "form-control"
+          .form-group
+            = f.label :password, class: "col-sm-4 control-label"
+            .col-sm-6
+              = f.password_field :password, autocomplete: "off", class: "form-control"
+          .form-group
+            = f.label :password_confirmation, "Password confirmation", class: "col-sm-4 control-label"
+            .col-sm-6
+              = f.password_field :password_confirmation, autocomplete: "off", class: "form-control"
+          .modal-footer
+            %div{:style => "float: left"}
+              Existing user? #{link_to "Sign in", new_session_path(resource_name), class: "btn-sm btn-success"}
+              %br/
+            .form-group
+              .col-sm-offset-2.col-sm-10
+                = f.submit "Sign up", class: "btn btn-primary"
+    / /.modal-content
+  / /.modal-dialog
+/ /.modal
+:javascript
+  $('.modal').modal({
+      backdrop: 'static',
+      keyboard: true
+  });

@@ -1,0 +1,3 @@
+= form_for(:gadget, url: search_path, method: :post, html: {id: "search"}) do |f|
+  Search #{collection_select(:gadget, :gadget_id, @user_gadgets, :id, :title, prompt: "", selected: @search_gadget)}
+  \#{b "", gadgets_path, :remove, "default clear_search", :xs}

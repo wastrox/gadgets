@@ -1,0 +1,8 @@
+- if element.errors.any?
+  #error_explanation.alert.alert-danger
+    %h2
+      = pluralize(element.errors.count, "error")
+      prohibited this #{element.class.name.titleize} from being saved:
+    %ul
+      - element.errors.full_messages.each do |msg|
+        %li= msg

@@ -1,0 +1,38 @@
+!!!
+%html
+  %head
+    %title Gadgets
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+  %body
+    .navbar.navbar-fixed-top.navbar-inverse{:role => "navigation"}
+      .container
+        .navbar-header
+          %button.navbar-toggle{"data-target" => "navbar-collapse", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+          %a.navbar-brand{:href => "/"} Welcome!
+        .collapse.navbar-collapse
+          = content_tag :ul, class: "nav navbar-nav" do
+            = content_tag :li, ( link_to "My Gadgets", gadgets_url ), class: active("gadgets")
+          - if current_user
+            %p.navbar-text.navbar-right
+              = i "profile"
+              = current_user.email
+              \&nbsp;
+              \#{link_to raw("<span class='glyphicon glyphicon-log-out'></span> Logout"), destroy_user_session_path, method: :delete}
+        / /.nav-collapse
+      / /.container
+    .container.admin-container
+      .row.row-offcanvas.row-offcanvas-right
+        %div
+          - if flash.any?
+            - if flash[:notice]
+              = bs_alert(:warning, "flash-notice", flash[:notice])
+            - if flash[:error]
+              = bs_alert(:danger, "flash-error", flash[:error])
+        = yield
+      .col-xs-6.col-sm-3.sidebar-module.sidebar-module-inset
+    / /row
+    #overlay
+      #loading
