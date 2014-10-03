@@ -9,8 +9,7 @@ $(document).ready ->
   $(".clear_search").click ->
     show_loading()
 
-  $(".editable").editable mode: "inline"
-
+  init_editable()
 
   $(document).ajaxStart(->
     show_loading()

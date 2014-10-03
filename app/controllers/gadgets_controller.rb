@@ -11,8 +11,8 @@ class GadgetsController < ApplicationController
 
 	    @gadgets = Gadget.where(gadgets_conditions)
 	    respond_to do |format|
-	        format.html { }
-			format.js { }
+	        format.html { } # cover flow mode is handled with regular :get request
+			format.js { } # list mode is handled with ajax
 	    end
 	end
 
@@ -36,7 +36,6 @@ class GadgetsController < ApplicationController
 	    @gadget.destroy
 	    respond_to do |format|
 	      format.html { redirect_to gadgets_url }
-	      format.json { head :no_content }
 	    end
 	end
 

@@ -1,11 +1,3 @@
-init_popover = ->
-  $(".pop").popover "destroy"
-  $(".pop").popover
-    placement: "auto"
-    trigger: "hover"
-    container: "body"
-    html: true
-
 $(document).ready ->
   $("li.working input").knob()
   $uploadList = undefined
@@ -28,7 +20,6 @@ $(document).ready ->
         jqXHR.abort()  if tpl.hasClass("working")
         tpl.fadeOut ->
           tpl.remove()
-
 
       jqXHR = data.submit()
 
@@ -59,5 +50,5 @@ $(document).ready ->
 $(document).ajaxStop ->
   location.reload() # reload page when all Ajax requests are over to update gadget images list
 
-$(".editable").editable mode: "inline"
+init_editable()
 init_popover()

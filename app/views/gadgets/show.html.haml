@@ -9,12 +9,12 @@
     .browse.btn.btn-primary Browse
     = file_field_tag :photo, {"data-url" => "/gadgets/#{@gadget.id}/photos", name: "photo[photo]", multiple: "", type: "file"}
     .upload-list
-%hr
+  
 #gadgets_collection
-  %h4
+  %h3
     My #{@gadget.title} Photos
+    %hr
     = render partial: "gadget_photo_with_popover", collection: @gadget.photos, as: :photo
- 
 %hr
 = b "Back", gadgets_path, "arrow-left"
 

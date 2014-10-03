@@ -13,3 +13,12 @@ $.fn.extend center_me: ->
 window.setTimeout (->
   $(".alert-dismissible").fadeOut 1200
 ), 2000
+
+window.init_popover = ->
+  $(".pop").popover
+    trigger: "hover"
+    container: "body"
+    html: true
+
+window.init_editable = ->
+  $(".editable").editable mode: "inline"
