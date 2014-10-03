@@ -134,7 +134,7 @@ feature "Gadgets Management" do
 							find("input.select2-input").set 'mini'
 							expect(find('.select2-results')).to have_text "iPad mini"
 						end
-						scenario "With 'iPad mini' selected, I click 'go' button and only iPad mini is displayed", js: true do
+						scenario "With 'iPad mini' selected, I click enter and only iPad mini is displayed", js: true do
 							execute_script(' $("#gadget_gadget_id").select2("open")')
 							find("input.select2-input").set 'mini'
 							find("input.select2-input").native.send_keys(:return)
