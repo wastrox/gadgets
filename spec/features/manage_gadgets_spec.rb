@@ -22,7 +22,10 @@ shared_context "multiple files for upload" do
 	def gadget_with_photos
 		expect { @gadget = create(:gadget, title: "iPhone4s", user: @user) }.to change(Gadget, :count).by(1)
 		visit gadget_path(@gadget)
-		files.map {|file| attach_file "photo[photo]", file}
+		files.map {|file| 
+		    execute_script('$("#photo").show()') # make sure to make file_upload field visible or selenium will fail attaching files to it
+			attach_file "photo[photo]", file
+		}
 		wait_for_ajax
 		expect(@gadget.title).to eq("iPhone4s")
 		expect(@gadget.photos.count).to eq(files_count+1)
