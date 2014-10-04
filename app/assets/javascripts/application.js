@@ -9,4 +9,5 @@
 //= require contentflow
 //= require select2
 //= require jquery.knob.min
+//= require jquery.magnific-popup.min
 

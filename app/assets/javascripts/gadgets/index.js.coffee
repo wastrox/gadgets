@@ -10,6 +10,7 @@ $(document).ready ->
     show_loading()
 
   init_editable()
+  init_magnific()
 
   $(document).ajaxStart(->
     show_loading()

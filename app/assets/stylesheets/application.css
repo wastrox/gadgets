@@ -28,7 +28,7 @@
 #loading {position: absolute; left: 0; top: 0; opacity: 0.9; z-index: 5000; width: 64px; height: 64px; background-image: url(ajax_loading.gif); background-size: 100%}
 #gadgets_collection h5.view_mode {text-align: right;}
 .hint {color: #999; font-weight: normal;}
-.ContentFlow {background-color: black}
+.ContentFlow {background-color: black; padding-top: 50px;}
 tr.collection_title td, tr.gadget_row td {text-align: center;}
 
 #upload {display: table; width:100%; 
@@ -86,3 +86,8 @@ border: 1px solid #383838;
 }
 #photo {display: none;}
 .icon-success {color: lime;}
+table.list-view tr td, table.list-view tr th {vertical-align: middle; text-align: center;}
+table.list-view tr td.title {width: 300px; text-align: left; padding-left: 1em; font-weight: bold; font-size: 18px;}
+table.list-view tr td.control {width: 130px; line-height:2em; }
+.count {float: left; padding-right: 1em;}
+.help-block {text-align: left !important}

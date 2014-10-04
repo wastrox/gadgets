@@ -35,7 +35,7 @@ class GadgetsController < ApplicationController
 	def destroy
 	    @gadget.destroy
 	    respond_to do |format|
-	      format.html { redirect_to gadgets_url }
+	      format.html { redirect_to gadgets_url, notice: 'Gadget was successfully deleted.' }
 	    end
 	end
 
@@ -44,7 +44,7 @@ class GadgetsController < ApplicationController
 		  if @gadget.update(gadget_params)
 		    format.json { head :no_content }
 		  else
-		    format.json { render json: @gadget.errors, status: :unprocessable_entity }
+		    format.json { render json: {status: :error, msg: @gadget.errors.messages[:title].last} }
 		  end
 		end
 	end
@@ -67,9 +67,11 @@ class GadgetsController < ApplicationController
     end
 
     def set_view_mode
-    	@view_mode = params[:view_mode]
+    	@view_mode = params[:view]
+    	@view_mode ||= session[:view_mode]
     	@view_mode ||= "cover"
     	@view_mode.to_sym
+    	session[:view_mode] = @view_mode
     end
 
 	def xeditable? object = nil

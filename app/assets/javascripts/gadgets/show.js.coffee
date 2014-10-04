@@ -52,3 +52,4 @@ $(document).ajaxStop ->
 
 init_editable()
 init_popover()
+init_magnific()

@@ -6,9 +6,9 @@
       %tr.active.collection_title
         %td
           %h4
-            = editable gadget, :title
+            = editable gadget, :title, {placeholder: "Gadget Title"}
             = b 'Add Photos', gadget_path(gadget), :file, :default, :xs
-      = content_tag(:tr, class: "gadget_row", data: { gadget: gadget.id } ) do
+      = content_tag(:tr, class: "gadget_row" ) do
         %td
           - if gadget.photos.any?
             .ContentFlow
@@ -16,7 +16,7 @@
                 .indicator
               .flow
                 - gadget.photos.each_with_index do |image, i|
-                  = image_tag image.photo.url(:full), class: "item", title: gadget_title(gadget,i+1)
+                  = image_tag image.photo.url(:medium), class: "item", title: gadget_title(gadget,i+1), "data-mfp-src" => image.photo.url(:full), href: "#"
               .globalCaption
               .scrollbar
                 .slider

@@ -14,7 +14,8 @@
           %a.navbar-brand{:href => "/"} Welcome!
         .collapse.navbar-collapse
           = content_tag :ul, class: "nav navbar-nav" do
-            = content_tag :li, ( link_to "My Gadgets", gadgets_url ), class: active("gadgets")
+            = content_tag :li, ( link_to gadgets_url do "My Gadgets" end), class: active("gadgets#index")
+            = content_tag :li, ( link_to new_gadget_url do "#{i "plus-sign"} New" end ), class: active("gadgets#new")
           - if current_user
             %p.navbar-text.navbar-right
               = i "profile"
@@ -32,7 +33,6 @@
             - if flash[:error]
               = bs_alert(:danger, "flash-error", flash[:error])
         = yield
-      .col-xs-6.col-sm-3.sidebar-module.sidebar-module-inset
     / /row
     #overlay
       #loading

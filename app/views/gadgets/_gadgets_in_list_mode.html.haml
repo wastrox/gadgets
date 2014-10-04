@@ -1,23 +1,18 @@
 %h5.view_mode List View
-%table.disabled.table.table-hovers.table-condensed.table-striped.table-bordered
-  %thead
-    %tr.active
-      %th
-        Gadget #{hint("(click to rename)")}
-      %th
-        Up to 5 first photos #{hint("(more photos available in <a href='#{gadgets_path}' class='warning'>Cover Flow</a> mode)")}
-      %th Manage
+%table.disabled.table.table-hovers.table-condensed.table-bordered.list-view
   %tbody
-    - @gadgets.each do |gadget|
-      = content_tag(:tr, class: "gadget_row", data: { gadget: gadget.id } ) do
+    - @gadgets.each_with_index do |gadget, i|
+      %tr.gadget-row
+        %td.title.active{colspan: 3}
+          = editable gadget, :title, {placeholder: "Gadget Title"}
+          = gadgets_count(gadget)
+
+      %tr.gadget_row
         %td
-          %strong
-            = editable gadget, :title
-            = gadgets_count(gadget)
-        %td{:width => "660"}
           = "No photos for this gadget uploaded yet" unless gadget.photos.any?
-          = render partial: "gadget_photo_with_popover", collection: gadget.photos.first(5), as: :photo
-        %td{:width => "190"}
+          = render partial: "gadget_photo_with_popover", collection: gadget.photos.first(4), as: :photo
+        %td.control
           = b 'Add Photos', gadget, :file, :warning, :xs
           = b 'Delete', gadget, :trash, :danger, :xs, :delete
+
 = javascript_include_tag "gadgets/list_mode"

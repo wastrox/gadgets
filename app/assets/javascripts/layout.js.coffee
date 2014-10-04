@@ -17,8 +17,23 @@ window.setTimeout (->
 window.init_popover = ->
   $(".pop").popover
     trigger: "hover"
-    container: "body"
+    container: "div.container"
+    placement: "auto"
     html: true
 
 window.init_editable = ->
-  $(".editable").editable mode: "inline"
+  $(".editable").editable
+    mode: "inline"
+    success: (response, newValue) ->
+      if response.status is 'error' 
+        response.msg
+
+window.init_magnific = ->
+  $('.flow').magnificPopup
+    delegate: 'div.active canvas'
+    type: 'image'
+    closeOnContentClick: true
+  $('.magnific').magnificPopup
+    type: 'image'
+    closeOnContentClick: true
+
