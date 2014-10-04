@@ -1,26 +1,25 @@
 = render partial: "gadgets_search"
 %h5.view_mode Cover Flow View
-%table.disabled.table.table-hovers.table-condensed.table-striped.table-bordered
-  %tbody
-    - @gadgets.each do |gadget|
-      %tr.active.collection_title
-        %td
-          %h4
-            = editable gadget, :title, {placeholder: "Gadget Title"}
-            = b 'Add Photos', gadget_path(gadget), :file, :default, :xs
-      = content_tag(:tr, class: "gadget_row" ) do
-        %td
-          - if gadget.photos.any?
-            .ContentFlow
-              .loadIndicator
-                .indicator
-              .flow
-                - gadget.photos.each_with_index do |image, i|
-                  = image_tag image.photo.url(:medium), class: "item", title: gadget_title(gadget,i+1), "data-mfp-src" => image.photo.url(:full), href: "#"
-              .globalCaption
-              .scrollbar
-                .slider
-                  .position
-          - else
-            %h5
-              No photos for #{gadget.title} uploaded yet
+- @gadgets.each do |gadget|
+  %h4
+    = editable gadget, :title, {placeholder: "Gadget Title"}
+    = b 'Add Photos', gadget_path(gadget), :file, "default right", :xs
+  = content_tag(:tr, class: "gadget_row" ) do
+    - if gadget.photos.any?
+      .ContentFlow{id: "cf-#{gadget.id}", useAddOns: "Gadgets"}
+        .loadIndicator
+          .indicator
+        .flow
+          - gadget.photos.each_with_index do |image, i|
+            = image_tag image.photo.url(:medium), class: "item", title: gadget_title(gadget,i+1), href: image.photo.url(:full)
+        .globalCaption
+        .scrollbar
+          .slider
+            .position
+    - else
+      %h5
+        No photos for #{gadget.title} uploaded yet
+
+
+
+

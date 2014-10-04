@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   end
 
   # search alias for index action of gadgets controller for :post-ing search form
-  post 'search', to: 'gadgets#index' 
+  get 'search', to: 'gadgets#index' 
   
 end

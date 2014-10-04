@@ -42,7 +42,7 @@ class GadgetsController < ApplicationController
 	def update
 		respond_to do |format|
 		  if @gadget.update(gadget_params)
-		    format.json { head :no_content }
+		    format.json { render json: @gadget }
 		  else
 		    format.json { render json: {status: :error, msg: @gadget.errors.messages[:title].last} }
 		  end
@@ -60,6 +60,9 @@ class GadgetsController < ApplicationController
 
     def search_gadget
       @search_gadget = params[:gadget][:gadget_id] if params[:gadget]
+      @search_gadget ||= session[:search_gadget]
+      @search_gadget = nil if params[:clear_search]
+	  session[:search_gadget] = @search_gadget
     end
 
     def gadget_params

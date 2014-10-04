@@ -7,6 +7,7 @@
 //= require editable/bootstrap-editable
 //= require editable/rails
 //= require contentflow
+//= require ContentFlowAddOn_Gadgets
 //= require select2
 //= require jquery.knob.min
 //= require jquery.magnific-popup.min

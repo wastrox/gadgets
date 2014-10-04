@@ -33,7 +33,15 @@ window.init_magnific = ->
     delegate: 'div.active canvas'
     type: 'image'
     closeOnContentClick: true
+    fixedContentPos: false
+    preload: true
+    tLoading: ''
+
   $('.magnific').magnificPopup
     type: 'image'
+    fixedContentPos: false
     closeOnContentClick: true
+    preload: true
+    tLoading: ''
+
 
