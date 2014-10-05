@@ -1,7 +1,7 @@
 = render partial: "gadgets_search"
 %h5.view_mode Cover Flow View
 - @gadgets.each do |gadget|
-  %h4
+  %h4.gadget_title
     = editable gadget, :title, {placeholder: "Gadget Title"}
     = b 'Add Photos', gadget_path(gadget), :file, "default right", :xs
   = content_tag(:tr, class: "gadget_row" ) do

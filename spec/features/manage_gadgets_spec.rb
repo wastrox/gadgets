@@ -7,7 +7,7 @@ shared_examples "visually creatable" do |target, title|
   it "should create #{target}" do
   	expect {
 		visit gadgets_path
-		click_link "Add Gadget"
+		click_link "New"
 		fill_in "gadget_title", with: title
 		click_button "Save"
 		expect(page).to have_text("Gadget was successfully created")
@@ -138,8 +138,8 @@ feature "Gadgets Management" do
 							execute_script(' $("#gadget_gadget_id").select2("open")')
 							find("input.select2-input").set 'mini'
 							find("input.select2-input").native.send_keys(:return)
-							expect(find('tr.collection_title')).to have_text "iPad mini"
-							expect(page.all('tr.collection_title').map(&:text)).not_to have_text "iPhone 4s"
+							expect(find('h4.gadget_title')).to have_text "iPad mini"
+							expect(page.all('h4.gadget_title').map(&:text)).not_to have_text "iPhone 4s"
 						end
 						describe "I search for iPad mini by term 'mini'" do
 							before(:each) do
@@ -149,13 +149,13 @@ feature "Gadgets Management" do
 							end
 
 							scenario "With 'iPad mini' selected, only iPad mini is displayed", js: true do
-								expect(find('tr.collection_title')).to have_text "iPad mini"
-								expect(page.all('tr.collection_title').map(&:text)).not_to have_text "iPhone 4s"
+								expect(find('h4.gadget_title')).to have_text "iPad mini"
+								expect(page.all('h4.gadget_title').map(&:text)).not_to have_text "iPhone 4s"
 							end
 							scenario "With 'iPad mini' selected, I click 'x' button to clear search, and ALL gadgets are displayed", js: true do
-								expect(page.all('tr.collection_title').map(&:text)).not_to have_text "iPhone 4s"
+								expect(page.all('h4.gadget_title').map(&:text)).not_to have_text "iPhone 4s"
 								find(".clear_search").click
-								expect(page.all('tr.collection_title').map(&:text).join()).to have_text @gadets.join(" Add Photos")
+								expect(page.all('h4.gadget_title').map(&:text).join()).to have_text @gadets.join(" Add Photos")
 							end
 						end
 					end
