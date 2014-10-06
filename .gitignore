@@ -20,6 +20,8 @@
 
 /public/system/photos/**/*
 
+# rspec html reports
+/reports
 
 
 
