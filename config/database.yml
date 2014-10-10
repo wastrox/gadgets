@@ -28,3 +28,7 @@ test: &test
 production:
   <<: *default
   database: gadgets_production
+
+staging:
+  <<: *default
+  database: gadgets_staging

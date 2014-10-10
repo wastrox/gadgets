@@ -54,4 +54,6 @@ end
 gem 'execjs'
 gem 'therubyracer'
 
-
+group :staging do
+	gem 'aws-sdk'
+end
