@@ -37,6 +37,11 @@ GEM
     addressable (2.3.6)
     arel (5.0.1.20140414130214)
     awesome_print (1.2.0)
+    aws-sdk (1.59.1)
+      aws-sdk-v1 (= 1.59.1)
+    aws-sdk-v1 (1.59.1)
+      json (~> 1.4)
+      nokogiri (>= 1.4.4)
     bcrypt (3.1.7)
     builder (3.2.2)
     capistrano (3.2.1)
@@ -284,6 +289,7 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
+  aws-sdk
   capistrano (~> 3.2.0)
   capistrano-bundler
   capistrano-ext
